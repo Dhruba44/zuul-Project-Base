@@ -25,7 +25,7 @@ public class Game
     private Room cafe,gym, menLockerRm, womenLockerRm, admin, barser, laboratory;
     private Room healthOffice, waitingRm, recordRm, windowCutout,deanOffice;     
     private Item bat, shield,beer,soda,book,goggles,coffee,helmet,laser,pad,tuition,vitamin,steroid;
-    private Item spray,sandwich,sanitizer,study,assignment,nap,record,tonic;
+    private Item spray,sandwich,sanitizer,study,assignment,nap,record,tonic, gloves;
     private ItemType health, strength, defense;
     private Player dean;
     private int healthScore, strenghtScore, defenseScore;    
@@ -215,7 +215,8 @@ public class Game
     	 this.assignment = new Item("assignment", -15);
     	 this.nap = new Item("nap", -10);
     	 this.record = new Item("record", 5); 
-    	 this.tonic = new Item("tonic",15);    	 
+    	 this.tonic = new Item("tonic",15);    
+    	 this.gloves = new Item("gloves",10);
      } 	  	 
      
      // Create item type         
@@ -247,7 +248,8 @@ public class Game
     	 this.waitingRm.setItems(nap);
     	 this.recordRm.setItems(record);
     	 this.healthOffice.setItems(vitamin);
-    	 this.healthOffice.setItems(steroid);  	     	 
+    	 this.healthOffice.setItems(steroid); 
+    	 this.gym.setItems(gloves);
      }
      
       // Assign item to item type     
@@ -265,6 +267,15 @@ public class Game
     	 this.pad.setItemType(this.defense);
     	 this.soda.setItemType(this.health);     	 
     	 this.tuition.setItemType(this.health);
+    	 this.assignment.setItemType(this.strength);
+    	 this.study.setItemType(this.strength);
+    	 this.sandwich.setItemType(this.health);
+    	 this.sanitizer.setItemType(this.health);
+    	 this.spray.setItemType(this.defense);
+    	 this.nap.setItemType(this.health);
+    	 this.record.setItemType(this.strength);
+    	 this.tonic.setItemType(this.health);
+    	 this.gloves.setItemType(this.defense);
      }
                
      // show the room in the tracking array     
@@ -595,9 +606,9 @@ public class Game
 	    }
 	 
 	    /** 
-	     * the player attacks and deals damage to the dean
-	     * then, the dean subsequantly attack the player and deals damage to him
-	     * whoever drains out of the health first, will lose the game	     
+	     * check the list of picked up items and current statistics
+	     * print the message if the player tries to anything besides the list of picked up items and stat
+	     * print the message if nothing is written after the command
 	     */
 	    private void attackDean(Command command) 
 	    {    	

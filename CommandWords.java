@@ -1,3 +1,4 @@
+
 import java.util.HashMap;
 
 /**
@@ -9,6 +10,9 @@ import java.util.HashMap;
  *
  * @author  Michael Kölling and David J. Barnes
  * @version 2016.02.29
+ * 
+ * @author Gobra team
+ * @version March 17, 2020 
  */
 
 public class CommandWords
@@ -25,9 +29,9 @@ public class CommandWords
         validCommands = new HashMap<>();
         for(CommandWord command : CommandWord.values()) {
             if(command != CommandWord.UNKNOWN) {
-                validCommands.put(command.toString(), command);
+                validCommands.put(command.toString(), command);                
             }
-        }
+        } 
     }
 
     /**

@@ -1,3 +1,4 @@
+
 /**
  * This class is part of the "World of Zuul" application. 
  * "World of Zuul" is a very simple, text based adventure game.  
@@ -15,6 +16,9 @@
  * 
  * @author  Michael Kölling and David J. Barnes
  * @version 2016.02.29
+ * 
+ * @author Gobra team
+ * @version March 17, 2020 
  */
 
 public class Command
@@ -69,4 +73,3 @@ public class Command
         return (secondWord != null);
     }
 }
-

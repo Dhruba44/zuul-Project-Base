@@ -1,16 +1,14 @@
-
 import java.util.Set;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 
 /**
- * Class Room - a room in an adventure game.
+ * Class CopyOfRoom - a room in an adventure game.
  *
  * This class is part of the "World of Zuul" application. 
  * "World of Zuul" is a very simple, text based adventure game.  
  *
- * A "Room" represents one location in the scenery of the game.  It is 
+ * A "CopyOfRoom" represents one location in the scenery of the game.  It is 
  * connected to other rooms via exits.  For each existing exit, the room 
  * stores a reference to the neighboring room.
  * 
@@ -18,30 +16,29 @@ import java.util.Iterator;
  * @version 2016.02.29
  */
 
-public class Room 
+public class CopyOfRoom 
 {
     private String description;
-    private HashMap<String, Room> exits;        // stores exits of this room.    
-    private ArrayList<Item> items = new ArrayList<Item> ();
-   
+    private HashMap<String, CopyOfRoom> exits;        // stores exits of this room.
+
     /**
      * Create a room described "description". Initially, it has
      * no exits. "description" is something like "a kitchen" or
      * "an open court yard".
      * @param description The room's description.
      */
-    public Room(String description) 
+    public CopyOfRoom(String description) 
     {
         this.description = description;
         exits = new HashMap<>();
     }
- 	
-	/**
+
+    /**
      * Define an exit from this room.
      * @param direction The direction of the exit.
      * @param neighbor  The room to which the exit leads.
      */
-    public void setExit(String direction, Room neighbor) 
+    public void setExit(String direction, CopyOfRoom neighbor) 
     {
         exits.put(direction, neighbor);
     }
@@ -65,27 +62,6 @@ public class Room
     {
         return "You are " + description + ".\n" + getExitString();
     }
-    
-    /**
-     * Return a description of the room in the form:
-     *     You are in the kitchen.
-     *     No exist is declared
-     * @return A long description of this room
-     */
-    public String getLongDescrWithoutExit()
-    {
-        return "You are " + description  ;
-    }
-    /**
-     * ***This is description meant for back command***
-     * Return a description of the room in the form:
-     *     You are in the kitchen.     
-     * @return A long description of this room
-     */
-    public String getBackLongDescription()
-    {
-        return "You are " + description + "./n" + getExitString() ;
-    }
 
     /**
      * Return a string describing the room's exits, for example
@@ -108,20 +84,9 @@ public class Room
      * @param direction The exit's direction.
      * @return The room in the given direction.
      */
-    public Room getExit(String direction) 
+    public CopyOfRoom getExit(String direction) 
     {
         return exits.get(direction);
     }
-    
-    // set the items with rooms 
-    public void setItems (Item item) {
-    	this.items.add(item);
-    }   
-    
-    // get items 
-    public ArrayList<Item> getItems() {
-	return items;
-     }
-    
-       
 }
+

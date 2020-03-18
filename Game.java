@@ -24,7 +24,7 @@ public class Game
     private Room library, constructionSite,recRm,pub,bathRm1, bathRm2,bathRm3, lectureRm1,lectureRm2; 
     private Room cafe,gym, menLockerRm, womenLockerRm, admin, barser, laboratory;
     private Room healthOffice, waitingRm, recordRm, windowCutout,deanOffice;     
-    private Item bat, shield,beer,soda,book,goggles,coffee,helmet,laser,pad,tuition,vitamin,steroid;
+    private Item bat, shield,beer,soda,book,goggles,coffee,helmet,laser,pad,tuitionbill,vitamin,steroid;
     private Item spray,sandwich,sanitizer,study,assignment,nap,record,tonic, gloves;
     private ItemType health, strength, defense;
     private Player dean;
@@ -68,13 +68,13 @@ public class Game
     {      
         // create the rooms
     	lobby = new Room("at the lobby of university");
-        hallway1 = new Room("in hallyway within university campus");
-        hallway2 = new Room("hallyway within the university campus");
-        hallway7 = new Room("hallyway within the university campus");
-        hallway3 = new Room("hallyway within the university campus");
-        hallway4 = new Room("hallyway within the university campus");
-        hallway5 = new Room("hallyway within the university campus");
-        hallway6 = new Room("hallyway within the university campus");        
+        hallway1 = new Room("in hallway within university campus");
+        hallway2 = new Room("in hallway within university campus");
+        hallway7 = new Room("in hallway within university campus");
+        hallway3 = new Room("in hallway within university campus");
+        hallway4 = new Room("in hallway within university campus");
+        hallway5 = new Room("in hallway within university campus");
+        hallway6 = new Room("in hallway within university campus");        
         library = new Room("in the university library...it has item : book");       
         recRm = new Room("in the recreation center...it has items: soda,sandwich");
         pub = new Room("in the campus pub...it has item: beer");
@@ -89,7 +89,7 @@ public class Game
         menLockerRm = new Room ("in the men's locker room...it has item: helmet");
         womenLockerRm = new Room ("in the women's locker room...it has items: tonic, pad");
         admin = new Room ("in the admin office");
-        barser = new Room ("in the barser office...it has item: tuition");
+        barser = new Room ("in the barser office...it has item: tuitionbill");
         laboratory = new Room ("in the computer lab class...it has item: laser");
         healthOffice = new Room ("in the university health center...it has items: vitamin, steroid");
         waitingRm = new Room ("in the waiting room to the dean...it has item: nap");
@@ -152,6 +152,7 @@ public class Game
               
         hallway4.setExit("east",hallway5);
         hallway4.setExit("north",gym);
+        hallway4.setExit("west",hallway3);
         this.hallway4.setExit("south", windowCutout);        
         
         gym.setExit("south", hallway4);
@@ -180,6 +181,7 @@ public class Game
         
         hallway6.setExit("east",healthOffice);
         hallway6.setExit("north", barser);
+        hallway6.setExit("west",hallway5);
         
         barser.setExit("south", hallway6);
         barser.setExit("north", admin);
@@ -205,7 +207,7 @@ public class Game
     	 this.helmet = new Item("helmet", 10);
     	 this.laser = new Item("laser", 30);
     	 this.pad = new Item("pad", 20);
-    	 this.tuition = new Item("payment", -10);
+    	 this.tuitionbill = new Item("tuitionbill", -10);
     	 this.vitamin = new Item("vitamins", 30);
     	 this.steroid = new Item("steroids", 20); 
     	 this.spray = new Item("spray",15);
@@ -244,7 +246,7 @@ public class Game
     	 this.laboratory.setItems(laser);
     	 this.womenLockerRm.setItems(pad);
     	 this.womenLockerRm.setItems(tonic);
-    	 this.barser.setItems(tuition);
+    	 this.barser.setItems(tuitionbill);
     	 this.waitingRm.setItems(nap);
     	 this.recordRm.setItems(record);
     	 this.healthOffice.setItems(vitamin);
@@ -266,7 +268,7 @@ public class Game
     	 this.steroid.setItemType(this.strength);
     	 this.pad.setItemType(this.defense);
     	 this.soda.setItemType(this.health);     	 
-    	 this.tuition.setItemType(this.health);
+    	 this.tuitionbill.setItemType(this.health);
     	 this.assignment.setItemType(this.strength);
     	 this.study.setItemType(this.strength);
     	 this.sandwich.setItemType(this.health);
@@ -305,7 +307,7 @@ public class Game
     	 if (this.currentRoom == this.windowCutout) {
     		 return true;   	    	 
     	 }  else if (this.healthScore <= 0 || this.strenghtScore <= 0 || this.strenghtScore <= 0){
-    		 		System.out.println("your health is curshed ...you are dead...");
+    		 		System.out.println("your health is crushed ...you are dead...");
     		 		return true;
     	         } else if (this.dean.getPlayerHealth() <= 0) {
     	        	        return true;

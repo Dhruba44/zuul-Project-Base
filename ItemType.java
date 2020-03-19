@@ -1,5 +1,4 @@
 
-
 /**
  * This class is part of the "World of Zuul" application.   
  * ItemType keeps the information about different types of stat so that 
@@ -13,6 +12,7 @@ public class ItemType {
 	
 	private String description;	
 	
+	// constructor 
     public ItemType(String descr) {	  
 	  this.description = descr;
     }

@@ -14,6 +14,7 @@ public class Item {
 	private int point;	
 	private ItemType itemType;	
 	
+	  // constructor
 	public Item(String description,int point) 
 	{		
 		this.description = 	description;
@@ -26,9 +27,9 @@ public class Item {
 	}
 		
 	  // get item description
-     public String getDescription() {
+        public String getDescription() {
 		return this.description;
-	}
+	 }
 
 
 	//	get points of items

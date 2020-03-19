@@ -1,6 +1,6 @@
 
-
-/**
+import java.util.Random;
+ /**
  * This class is part of the "World of Zuul" application.   
  * Player class represents player and some related information about player such as 
  * description players stat 
@@ -8,9 +8,6 @@
  * @author Gobra team
  * @version March 17, 2020 
  */
-
-import java.util.Random;
-
 public class Player {
 	 	
 	private String description;
@@ -58,9 +55,9 @@ public class Player {
 	}
 
 	// random score generation with min-max
-     private int getMaxMinRandScore (int min, int max ) {
+       private int getMaxMinRandScore (int min, int max ) {
 	 Random random = new Random();
 	 int randNum = random.nextInt(max-min +1) + min;
 	 return randNum;
-     }
+       }
 }    

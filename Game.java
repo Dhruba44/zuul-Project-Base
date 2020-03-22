@@ -33,7 +33,9 @@ public class Game
     private ArrayList<Item> usedItemTrack;
     private static int maxNumOfItems = 15;
     private static int constructionPenalty = 10;
-    boolean finished;   
+    private boolean finished;   
+    private int beforeSize = 0;
+    private int afterSize = 0; 
         
     /**
      * Create the game and initialize its internal map.
@@ -256,7 +258,7 @@ public class Game
      
       // Assign item to item type     
      private void itemItemType () {
-         this.bat.setItemType(this.health);
+         this.bat.setItemType(this.strength);
          this.shield.setItemType(this.defense);
          this.beer.setItemType(this.health);
          this.coffee.setItemType(this.health);
@@ -329,7 +331,13 @@ public class Game
           this.dean.setPlayerHealth(this.dean.getPlayerHealth() - (this.strenghtScore - this.dean.getPlayerDefense()));
          }
      }
-                
+      
+     //no new item picked 
+     private void noItemPicked () {
+    	 if ((this.beforeSize - this.afterSize) == 0)
+    		 System.out.println("this is not a pickable item...");
+     }   
+     
     /**
      *  Main play routine.  Loops until end of play.
      */
@@ -469,7 +477,7 @@ public class Game
                            if (this.currentRoom.equals(this.deanOffice)) {
                                System.out.println(currentRoom.getLongDescrWithoutExit());
                                this.deanAttackPlayer();
-                               System.out.println("attack dean and defect him to win the contest...");
+                               System.out.println("attack dean and defeat him to win the contest...");
                                this.showCurrentStat();
                                } else {
                                       System.out.println(currentRoom.getLongDescription());
@@ -488,44 +496,44 @@ public class Game
          * the restriction is on place as to numbers of items the player can pick
          * @param command
          */
-         private void pickItems(Command command) {           
-            if (command.hasSecondWord()) {              
-                String pickupItem = command.getSecondWord();
-                if(this.usedItemTrack.size() <= (this.maxNumOfItems -1)) {
-                    for (Item pkIt : this.currentRoom.getItems()) {
-                        if (pkIt.getDescription().equals(pickupItem)) {
-                            if(this.usedItemTrack.contains(pkIt)) {
-                                System.out.println("you have already picked up this item...");
-                            } else {
-                                String itemTy = pkIt.getItemType().getDescription();
-                                this.usedItemTrack.add(pkIt);
-                                System.out.println("you have successfully pickup the item: "+ pkIt.getDescription());
-                                switch (itemTy) {
-                                case "Health":
-                                    healthScore = healthScore + pkIt.getPoint();
-                                    break;
-                                case "Strength":
-                                    strenghtScore = strenghtScore + pkIt.getPoint();
-                                    break;
-                                case "Defense":
-                                    defenseScore = defenseScore + pkIt.getPoint();
-                                    break;
-                                }
-                                this.showCurrentStat();
-                            }  
-                        } else {
-                            System.out.println("pick up the wrong item...item does not match");                        
-                        }
-                    }               
-                    } else {
-                        System.out.println("you have picked up maximun numbers of items: " + this.maxNumOfItems);
-                    }               
-            } else {
-                // if there is no second word, we do not know what items to pick...
-                System.out.println("Pick what?");
-                return;
-            }
-        }
+         private void pickItems(Command command) {	
+		beforeSize = this.usedItemTrack.size();
+		if (command.hasSecondWord()) {				
+			String pickupItem = command.getSecondWord();
+			if(this.usedItemTrack.size() <= (this.maxNumOfItems -1)) {
+				for (Item pkIt : this.currentRoom.getItems()) {
+					if (pkIt.getDescription().equals(pickupItem)) {
+						if(this.usedItemTrack.contains(pkIt)) {
+							System.out.println("you have already picked up this item...");
+						} else {
+							String itemTy = pkIt.getItemType().getDescription();							
+							this.usedItemTrack.add(pkIt);							
+							System.out.println("you have successfully pickup the item: "+ pkIt.getDescription());
+							switch (itemTy) {
+							case "Health":
+								healthScore = healthScore + pkIt.getPoint();
+								break;
+							case "Strength":
+								strenghtScore = strenghtScore + pkIt.getPoint();
+								break;
+							case "Defense":
+								defenseScore = defenseScore + pkIt.getPoint();
+								break;
+						    }
+						    this.showCurrentStat();
+						}  
+					} 
+				} 				
+				} else {
+					System.out.println("you have picked up maximun numbers of items: " + this.maxNumOfItems);
+				}				
+		} else {
+			// if there is no second word, we do not know what items to pick...
+			System.out.println("Pick what?");			
+		}	
+		  afterSize = this.usedItemTrack.size();
+		  this.noItemPicked();
+	}	
         
         /**
      * "BACK" command will move back the player to the preceding rooms sequentially  
@@ -628,7 +636,7 @@ public class Game
                          if (this.healthScore <= 0) {
                              System.out.println("you lost to the dean...");
                           } else if (this.dean.getPlayerHealth() <= 0) {
-                                 System.out.println("you defected the dean...congratulation..");
+                                 System.out.println("you defeated the dean...congratulation..");
                                  }
                        }
                                         

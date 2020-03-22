@@ -233,7 +233,7 @@ public class Game
      // associate item with rooms
      private void itemRoom () {          
          this.storeRm.setItems(bat);
-         this.scStoreRm.setItems(spray);
+         this.storeRm.setItems(spray);
          this.recRm.setItems(soda);
          this.recRm.setItems(sandwich);
          this.bathRm2.setItems(shield);
